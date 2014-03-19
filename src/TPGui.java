@@ -20,7 +20,7 @@ public class TPGui  {
         JButton syncButton = new JButton("Sincrono");
         JButton successRateTest = new JButton("Teste Taxa de Sucesso");
         JButton readRateTest = new JButton("Teste Leituras por Segundo");
-        JButton generateSummary = new JButton("Gerar Relatório");
+        JButton generateSummary = new JButton("Gerar Relatorio");
         
         syncButton.setMnemonic(KeyEvent.KEY_PRESSED);
         syncButton.setActionCommand("pulse");
