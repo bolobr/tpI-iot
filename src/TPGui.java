@@ -41,7 +41,7 @@ public class TPGui  {
         generateSummary.setActionCommand("summary");
         
         syncButton.addActionListener(new buttonAction(aModule));
-        successRateTest.addActionListener(new buttonAction(aModule));
+        successRateTest.addActionListener(new buttonAction(aModule, degree, distance));
         readRateTest.addActionListener(new buttonAction(aModule));
         generateSummary.addActionListener(new buttonAction(aModule));
         
@@ -90,3 +90,4 @@ public class TPGui  {
         }
     }
 }
+
