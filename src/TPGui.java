@@ -23,13 +23,14 @@ public class TPGui  {
         JButton generateSummary = new JButton("Gerar Relatorio");
         
         syncButton.setMnemonic(KeyEvent.KEY_PRESSED);
-        syncButton.setActionCommand("pulse");
         syncButton.addActionListener(new buttonAction(aModule));
         JTextField distance = new JTextField("Distancia");
         JTextField degree = new JTextField("Graus");
+        JTextField type = new JTextField("Tipo da Tag");
         
         controlPanel.add(distance);
         controlPanel.add(degree);
+        controlPanel.add(type);
         
         successRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
         successRateTest.setActionCommand("SRtest");
@@ -37,8 +38,10 @@ public class TPGui  {
         readRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
         readRateTest.setActionCommand("RRtest");
         
+        
         generateSummary.setMnemonic(KeyEvent.KEY_PRESSED);
         generateSummary.setActionCommand("summary");
+        
         
         syncButton.addActionListener(new buttonAction(aModule));
         successRateTest.addActionListener(new buttonAction(aModule));
@@ -57,6 +60,8 @@ public class TPGui  {
         	});
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controlPanel.setLayout(new FlowLayout());
+        
+        
 
         //Add the ubiquitous "Hello World" label.
 

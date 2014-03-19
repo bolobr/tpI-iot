@@ -108,6 +108,10 @@ public class AlienModule {
 	  
   }
   
+  public void GenerateReport(){
+ 
+  }
+  
   public void AlienAutonomous(){
 	try{
 	  MessageListenerModule service = new MessageListenerModule(3000);
