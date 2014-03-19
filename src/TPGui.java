@@ -16,7 +16,10 @@ public class TPGui  {
     	aModule = new AlienModule();
         //Create and set up the window.
         JFrame frame = new JFrame("TP-IOT");
+        GridLayout layout_frame = new GridLayout(1, 2);
+        frame.setLayout(layout_frame);
         JPanel controlPanel = new JPanel();
+        JPanel variablePanel = new JPanel();
         JButton syncButton = new JButton("Sincrono");
         JButton successRateTest = new JButton("Teste Taxa de Sucesso");
         JButton readRateTest = new JButton("Teste Leituras por Segundo");
@@ -57,7 +60,8 @@ public class TPGui  {
         	   }
         	});
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        controlPanel.setLayout(new FlowLayout());
+        controlPanel.setLayout(new GridLayout(5, 1));
+        variablePanel.setLayout(new GridLayout(3, 1));
         
         
 
@@ -68,10 +72,11 @@ public class TPGui  {
         controlPanel.add(successRateTest);
         controlPanel.add(readRateTest);
         controlPanel.add(generateSummary);
-        controlPanel.add(distance);
-        controlPanel.add(degree);
-        controlPanel.add(type);
+        variablePanel.add(distance);
+        variablePanel.add(degree);
+        variablePanel.add(type);
         frame.getContentPane().add(controlPanel);
+        frame.getContentPane().add(variablePanel);
         //Display the window.
         frame.pack();
         frame.setVisible(true);

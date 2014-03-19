@@ -1,7 +1,7 @@
 import java.awt.FlowLayout;
 //import java.util.ArrayList;
 import java.util.HashMap;
-//import java.net.InetAddress;
+import java.net.InetAddress;
 
 import javax.swing.JFrame;
 //import javax.swing.JLabel;
@@ -14,6 +14,7 @@ import com.alien.enterpriseRFID.notify.MessageListener;
 import com.alien.enterpriseRFID.notify.MessageListenerService;
 import com.alien.enterpriseRFID.reader.*;
 import com.alien.enterpriseRFID.tags.*;
+import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry.Entry;
 
 public class AlienModule {
   HashMap<String, Integer> srTest;
@@ -75,7 +76,7 @@ public class AlienModule {
   }
   
   public void SRTest(String degree, String distance, String type){
-	System.out.println(degree + " " + distance);
+	srTest = new HashMap<String, Integer>();
     try {
 	  reader.open();
 	  //Itera 10x
@@ -87,7 +88,8 @@ public class AlienModule {
 	      System.out.println("Tag(s) found:");	          
 	      for (int i=0; i<tagList.length; i++) {
 	        Tag tag = tagList[i];
-	        if (srTest.get(tag.getTagID()) == null){
+	        System.out.println(tag.getTagID());
+	        if (!srTest.containsKey(tag.getTagID())){
 	          srTest.put(tag.getTagID(), 1);
 	        } else{
 	    	  srTest.put(tag.getTagID(), srTest.get(tag.getTagID()) + 1 );
@@ -100,8 +102,15 @@ public class AlienModule {
 	  JPanel controlPanel = new JPanel();
 	  controlPanel.setLayout(new FlowLayout());
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	  //JTextArea label = new JTextArea(result);
-	  //controlPanel.add(label);
+	  String result_text = "Tipo: " + type + "\n" +
+	    "Distância: " + distance + "\n" +
+		"Grau: " + degree + "\n";
+	  for(java.util.Map.Entry<String, Integer> entry: srTest.entrySet()){
+		  result_text = result_text + "Tag: " + entry.getKey() +
+				  " Lida: " + entry.getValue().toString() + "\n";
+	  }
+	  JTextArea label = new JTextArea(result_text);
+	  controlPanel.add(label);
 	  frame.getContentPane().add(controlPanel);
 	  frame.pack();
 	  frame.setVisible(true);
@@ -122,10 +131,11 @@ public class AlienModule {
 	  MessageListenerModule service = new MessageListenerModule(3000);
 	  reader.open();
 	  reader.setAutoMode(AlienClass1Reader.ON);
-	  
+	  reader.setTagStreamFormat(AlienClass1Reader.TEXT_FORMAT); // Make sure service can decode it.
+	  //reader.setTagStreamMode(AlienClass1Reader.ON);
 	  //reader.setNotifyAddress(InetAddress.getLocalHost().getHostAddress(), service.getListenerPort());
-	  reader.setNotifyAddress("150.164.7.76", service.getListenerPort());
-	  reader.setNotifyFormat(AlienClass1Reader.XML_FORMAT); // Make sure service can decode it.
+	  reader.setNotifyAddress("150.164.7.112", service.getListenerPort());
+	  //reader.setNotifyFormat(AlienClass1Reader.XML_FORMAT); // Make sure service can decode it.
 	  reader.setNotifyTrigger("TrueFalse"); // Notify whether there's a tag or not
 	  reader.setAutoStopTimer(1000); // Read for 1 second
 	  reader.autoModeReset();
@@ -140,7 +150,7 @@ public class AlienModule {
 	try{
 	  reader.open();
 	  reader.autoModeReset();
-	  reader.setAutoMode(AlienClass1Reader.OFF);
+	  //reader.setAutoMode(AlienClass1Reader.OFF);
 	  reader.close();
 	} catch (AlienReaderException e){
 	  System.out.println("Error: " + "Autonomous command Refused " + e.toString());
