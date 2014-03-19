@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -23,6 +24,12 @@ public class TPGui  {
         
         syncButton.setMnemonic(KeyEvent.KEY_PRESSED);
         syncButton.setActionCommand("pulse");
+        syncButton.addActionListener(new buttonAction(aModule));
+        JTextField distance = new JTextField("Distancia");
+        JTextField degree = new JTextField("Graus");
+        
+        controlPanel.add(distance);
+        controlPanel.add(degree);
         
         successRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
         successRateTest.setActionCommand("SRtest");
