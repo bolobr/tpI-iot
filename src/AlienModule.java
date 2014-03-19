@@ -123,8 +123,8 @@ public class AlienModule {
 	  reader.setNotifyAddress("150.164.7.76", service.getListenerPort());
 	  reader.setNotifyFormat(AlienClass1Reader.XML_FORMAT); // Make sure service can decode it.
 	  reader.setNotifyTrigger("TrueFalse"); // Notify whether there's a tag or not
-	  //reader.setAutoStopTimer(1000); // Read for 1 second
-	  //reader.autoModeReset();
+	  reader.setAutoStopTimer(1000); // Read for 1 second
+	  reader.autoModeReset();
 	  reader.setNotifyMode(AlienClass1Reader.ON);
 	  reader.close();
 	} catch (Exception e){

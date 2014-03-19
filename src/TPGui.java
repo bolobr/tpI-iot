@@ -42,7 +42,7 @@ public class TPGui  {
         
         syncButton.addActionListener(new buttonAction(aModule));
         successRateTest.addActionListener(new buttonAction(aModule, degree, distance));
-        readRateTest.addActionListener(new buttonAction(aModule));
+        readRateTest.addActionListener(new buttonAction(aModule, degree, distance));
         generateSummary.addActionListener(new buttonAction(aModule));
         
         JToggleButton asyncButton = new JToggleButton("Asincrono");
