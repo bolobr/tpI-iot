@@ -71,6 +71,43 @@ public class AlienModule {
     }
   }
   
+  public void SRTest(){
+    try {
+	  reader.open();
+	  //Itera 10x
+	  for(int j = 0; j < 10; j++){
+	    Tag tagList[] = reader.getTagList();
+	    if (tagList == null) {
+	      System.out.println("No Tags Found");
+	    } else {
+	      System.out.println("Tag(s) found:");
+	    }      
+	    String result = "Tags Found:\n";
+	    for (int i=0; i<tagList.length; i++) {
+	      Tag tag = tagList[i];
+	      result = result + "ID:" + tag.getTagID() +
+	        ", | Reads:" + tag.getRenewCount() + "\n";
+	    }
+	    if (tagList.length == 0)
+	      result = "No tags found";
+	    }
+	    JFrame frame = new JFrame("TP-IOT");
+	    JPanel controlPanel = new JPanel();
+	    controlPanel.setLayout(new FlowLayout());
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    //JTextArea label = new JTextArea(result);
+	    //controlPanel.add(label);
+	    frame.getContentPane().add(controlPanel);
+	    frame.pack();
+	    frame.setVisible(true);
+	    // Close the connection
+	    reader.close();
+	    } catch (AlienReaderException e){
+	      System.out.println("Error: " + e.toString());
+	    }
+	  
+  }
+  
   public void AlienAutonomous(){
 	try{
 	  MessageListenerModule service = new MessageListenerModule(3000);
