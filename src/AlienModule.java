@@ -1,11 +1,13 @@
 import java.awt.FlowLayout;
-import java.net.InetAddress;
+//import java.util.ArrayList;
+import java.util.HashMap;
+//import java.net.InetAddress;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+//import javax.swing.JTextField;
 
 import com.alien.enterpriseRFID.notify.Message;
 import com.alien.enterpriseRFID.notify.MessageListener;
@@ -14,7 +16,8 @@ import com.alien.enterpriseRFID.reader.*;
 import com.alien.enterpriseRFID.tags.*;
 
 public class AlienModule {
-	AlienClass1Reader reader;
+  HashMap<String, Integer> srTest;
+  AlienClass1Reader reader;
   public AlienModule() {
     reader = new AlienClass1Reader();
     reader.setConnection("COM1");
@@ -71,7 +74,8 @@ public class AlienModule {
     }
   }
   
-  public void SRTest(){
+  public void SRTest(String degree, String distance){
+	System.out.println(degree + " " + distance);
     try {
 	  reader.open();
 	  //Itera 10x
@@ -80,31 +84,32 @@ public class AlienModule {
 	    if (tagList == null) {
 	      System.out.println("No Tags Found");
 	    } else {
-	      System.out.println("Tag(s) found:");
-	    }      
-	    String result = "Tags Found:\n";
-	    for (int i=0; i<tagList.length; i++) {
-	      Tag tag = tagList[i];
-	      result = result + "ID:" + tag.getTagID() +
-	        ", | Reads:" + tag.getRenewCount() + "\n";
+	      System.out.println("Tag(s) found:");	          
+	      for (int i=0; i<tagList.length; i++) {
+	        Tag tag = tagList[i];
+	        if (srTest.get(tag.getTagID()) == null){
+	          srTest.put(tag.getTagID(), 1);
+	        } else{
+	    	  srTest.put(tag.getTagID(), srTest.get(tag.getTagID()) + 1 );
+	        }
+	      }
 	    }
-	    if (tagList.length == 0)
-	      result = "No tags found";
-	    }
-	    JFrame frame = new JFrame("TP-IOT");
-	    JPanel controlPanel = new JPanel();
-	    controlPanel.setLayout(new FlowLayout());
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    //JTextArea label = new JTextArea(result);
-	    //controlPanel.add(label);
-	    frame.getContentPane().add(controlPanel);
-	    frame.pack();
-	    frame.setVisible(true);
-	    // Close the connection
-	    reader.close();
-	    } catch (AlienReaderException e){
-	      System.out.println("Error: " + e.toString());
-	    }
+	  }
+    
+	  JFrame frame = new JFrame("TP-IOT");
+	  JPanel controlPanel = new JPanel();
+	  controlPanel.setLayout(new FlowLayout());
+	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  //JTextArea label = new JTextArea(result);
+	  //controlPanel.add(label);
+	  frame.getContentPane().add(controlPanel);
+	  frame.pack();
+	  frame.setVisible(true);
+	  // Close the connection
+	  reader.close();
+	} catch (AlienReaderException e){
+	    System.out.println("Error: " + e.toString());
+	}
 	  
   }
   
