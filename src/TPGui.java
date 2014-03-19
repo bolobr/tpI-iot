@@ -18,6 +18,10 @@ public class TPGui  {
         JFrame frame = new JFrame("TP-IOT");
         JPanel controlPanel = new JPanel();
         JButton syncButton = new JButton("Sincrono");
+        JButton successRateTest = new JButton("Teste Taxa de Sucesso");
+        JButton readRateTest = new JButton("Teste Leituras por Segundo");
+        JButton generateSummary = new JButton("Gerar Relatório");
+        
         syncButton.setMnemonic(KeyEvent.KEY_PRESSED);
         syncButton.setActionCommand("pulse");
         syncButton.addActionListener(new buttonAction(aModule));
@@ -27,6 +31,18 @@ public class TPGui  {
         controlPanel.add(distance);
         controlPanel.add(degree);
         
+        successRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
+        successRateTest.setActionCommand("SRtest");
+        
+        readRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
+        readRateTest.setActionCommand("RRtest");
+        
+        generateSummary.setMnemonic(KeyEvent.KEY_PRESSED);
+        generateSummary.setActionCommand("sumary");
+        
+        syncButton.addActionListener(new buttonAction(aModule));
+        successRateTest.addActionListener(new buttonAction(aModule));
+        readRateTest.addActionListener(new buttonAction(aModule));
         
         JToggleButton asyncButton = new JToggleButton("Asincrono");
         asyncButton.addItemListener(new ItemListener() {
@@ -45,6 +61,9 @@ public class TPGui  {
 
         controlPanel.add(syncButton);
         controlPanel.add(asyncButton);
+        controlPanel.add(successRateTest);
+        controlPanel.add(readRateTest);
+        controlPanel.add(generateSummary);
         frame.getContentPane().add(controlPanel);
         //Display the window.
         frame.pack();
