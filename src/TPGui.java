@@ -31,11 +31,12 @@ public class TPGui  {
         readRateTest.setActionCommand("RRtest");
         
         generateSummary.setMnemonic(KeyEvent.KEY_PRESSED);
-        generateSummary.setActionCommand("sumary");
+        generateSummary.setActionCommand("summary");
         
         syncButton.addActionListener(new buttonAction(aModule));
         successRateTest.addActionListener(new buttonAction(aModule));
         readRateTest.addActionListener(new buttonAction(aModule));
+        generateSummary.addActionListener(new buttonAction(aModule));
         
         JToggleButton asyncButton = new JToggleButton("Asincrono");
         asyncButton.addItemListener(new ItemListener() {

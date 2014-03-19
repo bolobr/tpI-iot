@@ -11,8 +11,15 @@ public class buttonAction implements ActionListener {
     public void actionPerformed(ActionEvent e){
         if ("pulse".equals(e.getActionCommand())) {
         	aModule.AlienPulse();        	
-        } else {
-        	System.out.println("------");
+        } 
+        if ("SRtest".equals(e.getActionCommand())) {
+        	aModule.SRTest();
+        }
+        if ("RRtest".equals(e.getActionCommand())) {
+        	aModule.AlienPulse();        	
+        }
+        if ("summary".equals(e.getActionCommand())) {
+        	aModule.AlienPulse();        	
         }
     }
 }
