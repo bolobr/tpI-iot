@@ -74,7 +74,7 @@ public class AlienModule {
     }
   }
   
-  public void SRTest(String degree, String distance){
+  public void SRTest(String degree, String distance, String type){
 	System.out.println(degree + " " + distance);
     try {
 	  reader.open();
@@ -110,6 +110,10 @@ public class AlienModule {
 	} catch (AlienReaderException e){
 	    System.out.println("Error: " + e.toString());
 	}
+	  
+  }
+  
+  public void GenerateReport(){
 	  
   }
   

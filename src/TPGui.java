@@ -23,13 +23,12 @@ public class TPGui  {
         JButton generateSummary = new JButton("Gerar Relatorio");
         
         syncButton.setMnemonic(KeyEvent.KEY_PRESSED);
-        syncButton.setActionCommand("pulse");
         syncButton.addActionListener(new buttonAction(aModule));
         JTextField distance = new JTextField("Distancia");
         JTextField degree = new JTextField("Graus");
+        JTextField type = new JTextField("Tipo da Tag");
         
-        controlPanel.add(distance);
-        controlPanel.add(degree);
+
         
         successRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
         successRateTest.setActionCommand("SRtest");
@@ -37,12 +36,14 @@ public class TPGui  {
         readRateTest.setMnemonic(KeyEvent.KEY_PRESSED);
         readRateTest.setActionCommand("RRtest");
         
+        
         generateSummary.setMnemonic(KeyEvent.KEY_PRESSED);
         generateSummary.setActionCommand("summary");
         
+        
         syncButton.addActionListener(new buttonAction(aModule));
-        successRateTest.addActionListener(new buttonAction(aModule, degree, distance));
-        readRateTest.addActionListener(new buttonAction(aModule, degree, distance));
+        successRateTest.addActionListener(new buttonAction(aModule, degree, distance, type));
+        readRateTest.addActionListener(new buttonAction(aModule, degree, distance, type));
         generateSummary.addActionListener(new buttonAction(aModule));
         
         JToggleButton asyncButton = new JToggleButton("Asincrono");
@@ -57,6 +58,8 @@ public class TPGui  {
         	});
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         controlPanel.setLayout(new FlowLayout());
+        
+        
 
         //Add the ubiquitous "Hello World" label.
 
@@ -65,6 +68,9 @@ public class TPGui  {
         controlPanel.add(successRateTest);
         controlPanel.add(readRateTest);
         controlPanel.add(generateSummary);
+        controlPanel.add(distance);
+        controlPanel.add(degree);
+        controlPanel.add(type);
         frame.getContentPane().add(controlPanel);
         //Display the window.
         frame.pack();
