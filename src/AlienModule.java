@@ -23,6 +23,7 @@ public class AlienModule {
     reader.setUsername("alien");
     reader.setPassword("password");
   }
+  
   public void AlienPulse(){
     // Open a connection to the reader
     try {
